@@ -1,6 +1,4 @@
-/*******************************************************************************
- * © 2020 CGI OpenGrid360. All rights are reserved.
- ******************************************************************************/
+
 package com.cgi.ogs.exampleapp.trace;
 
 import org.aspectj.lang.ProceedingJoinPoint;

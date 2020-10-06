@@ -9,7 +9,7 @@
         <version>2.2.6.RELEASE</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.cgi.ogs</groupId>
+    <groupId>com.example.ogs</groupId>
     <artifactId>example-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>example-app</name>
