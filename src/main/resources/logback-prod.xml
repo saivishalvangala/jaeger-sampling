@@ -1,0 +1,11 @@
+<configuration scan="true" scanPeriod="1800 seconds">
+<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+<encoder>
+<pattern>%msg%n%ex</pattern>
+</encoder>
+</appender>
+<root>
+<level value="INFO" />
+<appender-ref ref="STDOUT" />
+</root>
+</configuration>
