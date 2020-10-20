@@ -18,7 +18,6 @@ data:
     management.endpoint.refresh.enabled=true
     management.endpoint.web.exposure.inculde=info,refresh,keepalive
     samplerType=remote
-    samplerParam=NULL
 ---
 apiVersion: apps/v1
 kind: Deployment
