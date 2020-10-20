@@ -1,5 +1,6 @@
 package com.cgi.ogs.exampleapp;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +19,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class ExampleAppApplication
 {
 
+    @Value("${application.name}")
+    private String applicationName;
+
+    @Value("${samplertype}")
+    private String samplerType;
+
+    @Value("${samplerParam}")
+    private String samplerParam;
+
     public static void main(final String[] args)
     {
         SpringApplication.run(ExampleAppApplication.class, args);
@@ -35,12 +45,21 @@ public class ExampleAppApplication
     @Bean
     public io.opentracing.Tracer jaegerTracer()
     {
+        Configuration.SamplerConfiguration samplerConfig;
+        System.out.println("samplertype: " + samplerType + ", samplerParam: " + samplerParam);
+        if (samplerParam.equals("NULL"))
+        {
+            samplerConfig = Configuration.SamplerConfiguration.fromEnv().withType(samplerType);
+        }
+        else
+        {
+            int param = Integer.parseInt(samplerParam);
+            samplerConfig = Configuration.SamplerConfiguration.fromEnv().withType(samplerType).withParam(param);
+        }
 
-        final Configuration.SamplerConfiguration samplerConfig = Configuration.SamplerConfiguration.fromEnv()
-                .withType("const").withParam(1);
         final Configuration.ReporterConfiguration reporterConfig = Configuration.ReporterConfiguration.fromEnv()
                 .withLogSpans(true);
-        final Configuration config = new Configuration("example-app").withSampler(samplerConfig)
+        final Configuration config = new Configuration(applicationName).withSampler(samplerConfig)
                 .withReporter(reporterConfig);
 
         return config.getTracer();

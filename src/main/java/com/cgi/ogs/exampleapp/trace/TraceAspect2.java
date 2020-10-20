@@ -25,7 +25,7 @@ import io.opentracing.Tracer;
 public class TraceAspect2
 {
     /** The application name. */
-    private final String applicationName;
+    private String applicationName;
 
     /** The tracer. */
     @Autowired
@@ -56,7 +56,7 @@ public class TraceAspect2
     public Object around(final ProceedingJoinPoint joinPoint) throws Throwable
     {
         Object value = null;
-        final Span span = tracer.buildSpan("example" + ":Tracer").start();
+        final Span span = tracer.buildSpan(applicationName + ":Tracer").start();
         try
         {
             span.setOperationName("example");

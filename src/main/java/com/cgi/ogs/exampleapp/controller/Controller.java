@@ -37,6 +37,20 @@ public class Controller
         return new ResponseEntity<>("Hi", HttpStatus.OK);
     }
 
+    @GetMapping("/name")
+    @TraceIt
+    public ResponseEntity<String> getName()
+    {
+        return new ResponseEntity<>("Hi", HttpStatus.OK);
+    }
+
+    @GetMapping("/hello")
+    @TraceIt
+    public ResponseEntity<String> getHeloo()
+    {
+        return new ResponseEntity<>("Hi", HttpStatus.OK);
+    }
+
     @PostMapping("/email")
     @TraceIt
     public ResponseEntity<String> sendEmailToTopic(@RequestBody final EmailObject emailobject)
